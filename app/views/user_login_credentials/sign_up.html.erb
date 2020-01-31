@@ -1,0 +1,18 @@
+<%= form_with model:@sign_up, url:"/welcome_sign_up" do |f|%>
+    <p>
+    <%=f.label :user_name%>
+    <%=f.text_field :user_name%>
+    </p>
+
+    <p>
+    <%=f.label :email%>
+    <%=f.text_field :email%>
+    </p>
+
+    <p>
+    <%=f.label :password%>
+    <%=f.text_field :password%>
+    </p>
+
+    <%=f.submit "Sign Up"%>
+<%end%>
