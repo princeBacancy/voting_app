@@ -10,14 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_085117) do
+ActiveRecord::Schema.define(version: 2020_02_06_074246) do
+
+  create_table "offline_mode_data", force: :cascade do |t|
+    t.integer "offline_mode_id", null: false
+    t.string "name_of_candidate"
+    t.integer "votes_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offline_mode_id"], name: "index_offline_mode_data_on_offline_mode_id"
+  end
+
+  create_table "offline_mode_winners", force: :cascade do |t|
+    t.integer "offline_mode_id", null: false
+    t.string "winner_name"
+    t.integer "winning_votes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["offline_mode_id"], name: "index_offline_mode_winners_on_offline_mode_id"
+  end
+
+  create_table "offline_modes", force: :cascade do |t|
+    t.integer "user_login_credential_id", null: false
+    t.integer "number_of_candidates"
+    t.integer "number_of_maximum_voters"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_login_credential_id"], name: "index_offline_modes_on_user_login_credential_id"
+  end
 
   create_table "user_login_credentials", force: :cascade do |t|
     t.string "user_name"
     t.string "password"
     t.string "email"
+    t.integer "mobile_no"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "offline_mode_data", "offline_modes"
+  add_foreign_key "offline_mode_winners", "offline_modes"
+  add_foreign_key "offline_modes", "user_login_credentials"
 end

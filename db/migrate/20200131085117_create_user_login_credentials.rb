@@ -4,6 +4,7 @@ class CreateUserLoginCredentials < ActiveRecord::Migration[6.0]
       t.string :user_name
       t.string :password
       t.string :email
+      t.integer :mobile_no
 
       t.timestamps
     end
