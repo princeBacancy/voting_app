@@ -3,6 +3,7 @@ class UserLoginCredentialsController < ApplicationController
     @@user_name
     def after_login
         #first commit
+        #second
         @login = nil
         @login = UserLoginCredential.find_by(user_name:params[:user_name])
         session[:user_id] =  @login.id
